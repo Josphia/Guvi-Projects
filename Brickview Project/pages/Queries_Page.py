@@ -8,7 +8,8 @@ st.set_page_config(
     layout="wide"
 )
 
-conn = sqlite3.connect(r"E:\VS Code Projects\Brickview Project\brickview_database.db")
+conn = sqlite3.connect("brickview_database.db")
+
 
 listings = pd.read_json("listings_20k.json")
 property_attributes = pd.read_json("property_attributes_20k.json")
