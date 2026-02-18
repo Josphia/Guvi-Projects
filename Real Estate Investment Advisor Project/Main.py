@@ -17,4 +17,6 @@ le = LabelEncoder()
 df['City_Encoded'] = le.fit_transform(df['City'])
 df['Property_Type_Encoded'] = le.fit_transform(df['Property_Type'])
 
-print(df.head())
+df['School_Density_Score'] = df['Nearby_Schools']
+df.drop(columns=['Nearby_Schools'], inplace=True)
+print(df.columns)
