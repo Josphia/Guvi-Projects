@@ -29,6 +29,15 @@ if option == "1. What is the distribution of property prices?":
     ax.set_ylabel("Number of Properties")
     st.pyplot(fig)  
 
+elif option == "2. What is the distribution of property sizes?":
+    st.title("📊 EDA - Property Sizes Distribution")
+    fig, ax = plt.subplots(figsize=(8,5))
+    sns.histplot( df['Size_in_SqFt'], bins=50, kde=True, ax=ax, color="#ffc6c6" )
+    ax.set_title("Distribution of Property Sizes")
+    ax.set_xlabel("Size in SqFt")
+    ax.set_ylabel("Number of Properties")
+    st.pyplot(fig)  
+
 
 
 
