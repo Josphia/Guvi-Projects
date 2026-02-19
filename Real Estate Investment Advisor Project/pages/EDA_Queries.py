@@ -38,6 +38,23 @@ elif option == "2. What is the distribution of property sizes?":
     ax.set_ylabel("Number of Properties")
     st.pyplot(fig)  
 
+elif option == "3. How does the price per sq ft vary by property type?":
+    count = df['Property_Type'].value_counts()
+    fig, ax = plt.subplots(figsize=(3, 3))
+    ax.pie(count, labels=count.index, autopct='%1.1f%%', startangle=90)
+    ax.set_title("Distribution of Price Per Sqft Property Types")
+    st.pyplot(fig)
+
+elif option == "4. Is there a relationship between property size and price?":
+    
+    fig, ax = plt.subplots(figsize=(7,4))
+    df_sample = df.sample(1000)
+    sns.regplot(data=df_sample, x='Size_in_SqFt', y='Price_in_Lakhs', line_kws={'color':'red'})
+    ax.set_title("Property Size vs Price with Trend Line")
+    ax.set_xlabel("Size (in Sqft)")
+    ax.set_ylabel("Price (in Lakhs)")
+    st.pyplot(fig)
+
 
 
 

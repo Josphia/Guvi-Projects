@@ -14,3 +14,4 @@ st.write("Analyzing 250,000 property records...")
 df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv")
 
 #st.dataframe(df)
+
