@@ -17,7 +17,10 @@ option = st.selectbox("", options = [
     "1. What is the distribution of property prices?", 
     "2. What is the distribution of property sizes?", 
     "3. How does the price per sq ft vary by property type?", 
-    "4. Is there a relationship between property size and price?"], index=None, placeholder="Select One Josphia")
+    "4. Is there a relationship between property size and price?",
+    "5. Are there any outliers in price per sq ft or property size?",
+    "6. What is the average price per sq ft by state?"
+    ], index=None, placeholder="Select One Josphia")
 
 
 if option == "1. What is the distribution of property prices?":
@@ -46,16 +49,25 @@ elif option == "3. How does the price per sq ft vary by property type?":
     st.pyplot(fig)
 
 elif option == "4. Is there a relationship between property size and price?":
-    
     fig, ax = plt.subplots(figsize=(7,4))
     df_sample = df.sample(1000)
-    sns.regplot(data=df_sample, x='Size_in_SqFt', y='Price_in_Lakhs', line_kws={'color':'red'})
+    sns.regplot(data=df_sample, x='Size_in_SqFt', y='Price_in_Lakhs', line_kws={'color':'green'}, color='#ffc6c6')
     ax.set_title("Property Size vs Price with Trend Line")
     ax.set_xlabel("Size (in Sqft)")
     ax.set_ylabel("Price (in Lakhs)")
     st.pyplot(fig)
 
+elif option == "5. Are there any outliers in price per sq ft or property size?":
+    st.subheader("Outlier Detection: Size in SqFt")
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.boxplot(data=df, y='Size_in_SqFt', ax=ax, color='lightgreen')
+    ax.set_title("Outliers in Property Size")
+    st.pyplot(fig)
 
+elif option == "6. What is the average price per sq ft by state?":
+    st.subheader("Average Price per Sqft by State")
+    df6 = df.groupby('State')['Price_per_SqFt'].mean()
+    st.dataframe(df6)
 
 
 
