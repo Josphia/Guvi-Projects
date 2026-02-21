@@ -7,8 +7,8 @@ st.title("🏡 Real Estate Investment Advisor")
 
 @st.cache_resource
 def load_assets():
-    models = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models.pkl")
-    scaler = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler.pkl")
+    models = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models_c.pkl")
+    scaler = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_c.pkl")
     le_property = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_property.pkl")
     le_furnished = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_furnished.pkl")
     features = joblib.load(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features.pkl")

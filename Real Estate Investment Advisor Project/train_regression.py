@@ -37,7 +37,7 @@ for name, model in models.items():
     model.fit(X_train_scaled, y_train)
     trained_models[name] = model
 
-joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models.pkl")
-joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler.pkl")
+joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models_r.pkl")
+joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_r.pkl")
 
 print("Done")
