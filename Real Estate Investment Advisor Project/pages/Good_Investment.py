@@ -49,6 +49,6 @@ if st.button("Predict Investment"):
     prediction = model.predict(user_scaled)[0]
 
     if prediction == 1:
-        st.success("✅ GOOD Investment")
+        st.success("Yes, GOOD Investment ✅")
     else:
-        st.error("❌ NOT a Good Investment")
+        st.error("No, NOT a Good Investment ❌")
