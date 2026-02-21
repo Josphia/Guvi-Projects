@@ -41,3 +41,4 @@ joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Inve
 joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_r.pkl")
 
 print("Done")
+
