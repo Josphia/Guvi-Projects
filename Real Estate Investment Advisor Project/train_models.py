@@ -43,10 +43,10 @@ for name, model in models.items():
     model.fit(X_train_scaled, y_train)
     trained_models[name] = model
 
-joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models.pkl")
-joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler.pkl")
+joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features.pkl")
 joblib.dump(le_property, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_property.pkl")
 joblib.dump(le_furnished, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_furnished.pkl")
-joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features.pkl")
+joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler.pkl")
+joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models.pkl")
  
-print("✅ Training complete. Files saved successfully.")
+print("Training completed")
