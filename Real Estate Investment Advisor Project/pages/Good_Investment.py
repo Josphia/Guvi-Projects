@@ -18,7 +18,7 @@ models, scaler, le_property, le_furnished, features = load_assets()
 model_name = st.selectbox("Choose Model", list(models.keys()))
 model = models[model_name]
 
-bhk = st.number_input("BHK (between 1-10)", 1, 10)
+bhk = st.number_input("BHK (between 1-10)", 1, 10, 2)
 sqft = st.number_input("Size in SqFt", 100, 10000, 1200)
 price = st.number_input("Price (Lakhs)", 1.0, 1000.0, 50.0)
 age = st.number_input("Age of Property", 0, 50, 5)
