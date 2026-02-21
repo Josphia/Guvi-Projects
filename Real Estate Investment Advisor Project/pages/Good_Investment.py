@@ -28,8 +28,8 @@ hospitals = st.number_input("Nearby Hospitals", 0, 20, 1)
 property_type = st.selectbox("Property Type", le_property.classes_)
 furnished_status = st.selectbox("Furnished Status", le_furnished.classes_)
 
-X_test = pd.read_csv("X_test_c.csv")
-y_test = pd.read_csv("y_test_c.csv")
+X_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_c.csv")
+y_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_c.csv")
 X_test_scaled = scaler.transform(X_test)
 
 y_pred = model.predict(X_test_scaled)
