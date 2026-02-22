@@ -26,7 +26,7 @@ city_growth_rates = {
 
 city_growth_rate = df["City"].map(city_growth_rates)
 bhk_rate = df['BHK']*0.01
-sqft_rate = df['Size_in_SqFt']*0.00005
+sqft_rate = df["Size_in_SqFt"] / 1000 * 0.02
 year_built_rate = (2026 - df['Year_Built']) * 0.005
 
 df["Future_Price_5Y"] = df["Price_in_Lakhs"] * (city_growth_rate + bhk_rate + sqft_rate - year_built_rate)
