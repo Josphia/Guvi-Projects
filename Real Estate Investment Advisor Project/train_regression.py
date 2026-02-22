@@ -66,4 +66,3 @@ joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment
 joblib.dump(le_city, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_city.pkl")
 
 print("Training Completed")
-#ds
