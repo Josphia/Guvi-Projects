@@ -18,6 +18,9 @@ y = df["Future_Price_5Y"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+X_test.to_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_r.csv", index=False)
+y_test.to_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_r.csv", index=False)
+
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 
@@ -37,5 +40,6 @@ for name, model in models.items():
 
 joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models_r.pkl", compress=3)
 joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_r.pkl")
+joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features_r.pkl")
 
 print("Training Done")
