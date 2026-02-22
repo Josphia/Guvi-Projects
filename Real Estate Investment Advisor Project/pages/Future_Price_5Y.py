@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 st.title("🏡 Real Estate Investment Advisor")
+st.subheader("Predicting the Future Price in 5 Years")
 
 @st.cache_resource
 def load_assets():
@@ -29,14 +30,14 @@ X_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment 
 y_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_r.csv")
 
 X_test_scaled = scaler.transform(X_test)
+
 y_pred_test = model.predict(X_test_scaled)
 
 rmse = np.sqrt(mean_squared_error(y_test, y_pred_test))
 mae  = mean_absolute_error(y_test, y_pred_test)
 r2   = r2_score(y_test, y_pred_test)
 
-# Button action (mirrors classification logic)
-if st.button("Predict and Evaluate Model Metrics"):
+if st.button("Predict Future Price and Evaluate Model Metrics"):
 
     user_df = pd.DataFrame([[bhk, sqft, price, year_built, floor_no, total_floors]],
                            columns=features)
@@ -44,10 +45,7 @@ if st.button("Predict and Evaluate Model Metrics"):
     user_scaled = scaler.transform(user_df)
     future_price = model.predict(user_scaled)[0]
 
-    st.success(f"💰 Estimated Future Price: ₹{future_price:.2f} Lakhs")
-
-    appreciation = ((future_price - price) / price) * 100
-    st.info(f"📈 Projected Appreciation: {appreciation:.2f}%")
+    st.success(f"Estimated Future Price: ₹{future_price:.2f} Lakhs")
 
     st.write(f"RMSE: {rmse:.4f}")
     st.write(f"MAE: {mae:.4f}")
