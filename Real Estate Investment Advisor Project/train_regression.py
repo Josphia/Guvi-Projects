@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import LinearSVR
 from xgboost import XGBRegressor
-#Future Price Final
+#Future Price Final and Clear
 df = pd.read_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv" )
 
 city_growth_rates = {
