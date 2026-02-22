@@ -1,25 +1,46 @@
 import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import LinearSVR
 from xgboost import XGBRegressor
 
-df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv")
+df = pd.read_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv" )
 
-df["Future_Price_5Y"] = df["Price_in_Lakhs"] * (1.08 ** 5)
+city_growth_rates = {
+    'Ahmedabad': 1.45, 'Amritsar': 1.25, 'Bangalore': 1.70, 'Bhopal': 1.30,
+    'Bhubaneswar': 1.35, 'Bilaspur': 1.20, 'Chennai': 1.48, 'Coimbatore': 1.40,
+    'Cuttack': 1.28, 'Dehradun': 1.35, 'Durgapur': 1.22, 'Dwarka': 1.55,
+    'Faridabad': 1.42, 'Gaya': 1.20, 'Gurgaon': 1.65, 'Guwahati': 1.32,
+    'Haridwar': 1.25, 'Hyderabad': 1.62, 'Indore': 1.44, 'Jaipur': 1.38,
+    'Jamshedpur': 1.28, 'Jodhpur': 1.25, 'Kochi': 1.35, 'Kolkata': 1.30,
+    'Lucknow': 1.45, 'Ludhiana': 1.32, 'Mangalore': 1.30, 'Mumbai': 1.55,
+    'Mysore': 1.35, 'Nagpur': 1.38, 'New Delhi': 1.58, 'Noida': 1.60,
+    'Patna': 1.35, 'Pune': 1.52, 'Raipur': 1.28, 'Ranchi': 1.30,
+    'Silchar': 1.18, 'Surat': 1.45, 'Trivandrum': 1.35, 'Vijayawada': 1.32,
+    'Vishakhapatnam': 1.40, 'Warangal': 1.25
+}
 
-features = ["BHK", "Size_in_SqFt", "Price_in_Lakhs", "Year_Built", "Floor_No", "Total_Floors"]
+#for i in 
+
+
+df["Future_Price_5Y"] = df["Price_in_Lakhs"] * 1.4693
+
+le_city = LabelEncoder()
+df["City"] = le_city.fit_transform(df["City"])
+
+features = [ "BHK", "Size_in_SqFt", "Price_in_Lakhs", "Year_Built", "City"]
+
 X = df[features]
 y = df["Future_Price_5Y"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42 )
 
-X_test.to_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_r.csv", index=False)
-y_test.to_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_r.csv", index=False)
+X_test.to_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_r.csv", index=False )
+y_test.to_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_r.csv", index=False )
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
@@ -27,9 +48,9 @@ X_train_scaled = scaler.fit_transform(X_train)
 models = {
     "Linear Regression": LinearRegression(),
     "Decision Tree": DecisionTreeRegressor(random_state=42),
-    "Random Forest": RandomForestRegressor(n_estimators=50, random_state=42, n_jobs=-1),
-    "LinearSVR": LinearSVR(random_state=42, max_iter=10000),
-    "XGBoost": XGBRegressor(objective="reg:squarederror", n_estimators=50, max_depth=4, learning_rate=0.1, random_state=42, n_jobs=-1)
+    "Random Forest": RandomForestRegressor(n_estimators=50, max_depth=10, random_state=42),
+    "Linear SVR": LinearSVR(max_iter=10000),
+    "XGBoost": XGBRegressor(n_estimators=50, max_depth=5, random_state=42)
 }
 
 trained_models = {}
@@ -41,5 +62,7 @@ for name, model in models.items():
 joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models_r.pkl", compress=3)
 joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_r.pkl")
 joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features_r.pkl")
+joblib.dump(le_city, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_city.pkl")
 
-print("Training Done")
+print("Training Completed")
+#ds
