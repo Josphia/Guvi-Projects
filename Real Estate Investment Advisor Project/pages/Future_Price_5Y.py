@@ -1,5 +1,3 @@
-(Frontend)
-
 import streamlit as st
 import pandas as pd
 import joblib
@@ -18,20 +16,6 @@ def load_assets():
     return models, scaler, features, le_city
 
 models, scaler, features, le_city = load_assets()
-
-city_growth_rates = {
-    'Ahmedabad': 1.45, 'Amritsar': 1.25, 'Bangalore': 1.70, 'Bhopal': 1.30,
-    'Bhubaneswar': 1.35, 'Bilaspur': 1.20, 'Chennai': 1.48, 'Coimbatore': 1.40,
-    'Cuttack': 1.28, 'Dehradun': 1.35, 'Durgapur': 1.22, 'Dwarka': 1.55,
-    'Faridabad': 1.42, 'Gaya': 1.20, 'Gurgaon': 1.65, 'Guwahati': 1.32,
-    'Haridwar': 1.25, 'Hyderabad': 1.62, 'Indore': 1.44, 'Jaipur': 1.38,
-    'Jamshedpur': 1.28, 'Jodhpur': 1.25, 'Kochi': 1.35, 'Kolkata': 1.30,
-    'Lucknow': 1.45, 'Ludhiana': 1.32, 'Mangalore': 1.30, 'Mumbai': 1.55,
-    'Mysore': 1.35, 'Nagpur': 1.38, 'New Delhi': 1.58, 'Noida': 1.60,
-    'Patna': 1.35, 'Pune': 1.52, 'Raipur': 1.28, 'Ranchi': 1.30,
-    'Silchar': 1.18, 'Surat': 1.45, 'Trivandrum': 1.35, 'Vijayawada': 1.32,
-    'Vishakhapatnam': 1.40, 'Warangal': 1.25
-}
 
 model_name = st.selectbox("Choose Model", list(models.keys()))
 model = models[model_name]
@@ -56,9 +40,7 @@ if st.button("Predict Future Price and Evaluate Model Metrics"):
 
     city_enc = le_city.transform([city])[0]
 
-    user_df = pd.DataFrame([[bhk, sqft, price, year_built, city_enc]], columns=features)
-
-    
+    user_df = pd.DataFrame([[bhk, sqft, price, year_built, city_enc]], columns=features) 
 
     user_scaled = scaler.transform(user_df)
     future_price = model.predict(user_scaled)[0]
@@ -68,4 +50,3 @@ if st.button("Predict Future Price and Evaluate Model Metrics"):
     st.write(f"RMSE: {rmse:.4f}")
     st.write(f"MAE: {mae:.4f}")
     st.write(f"R² Score: {r2:.4f}")
-

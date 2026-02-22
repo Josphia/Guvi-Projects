@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import LinearSVR
 from xgboost import XGBRegressor
-
+#Future Price Final
 df = pd.read_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv" )
 
 city_growth_rates = {
@@ -26,8 +26,10 @@ city_growth_rates = {
 
 city_growth_rate = df["City"].map(city_growth_rates)
 bhk_rate = df['BHK']*0.01
+sqft_rate = df['Size_in_SqFt']*0.00005
+year_built_rate = (2026 - df['Year_Built']) * 0.005
 
-df["Future_Price_5Y"] = df["Price_in_Lakhs"] * (city_growth_rate + bhk_rate)
+df["Future_Price_5Y"] = df["Price_in_Lakhs"] * (city_growth_rate + bhk_rate + sqft_rate - year_built_rate)
 
 le_city = LabelEncoder()
 df["City"] = le_city.fit_transform(df["City"])
