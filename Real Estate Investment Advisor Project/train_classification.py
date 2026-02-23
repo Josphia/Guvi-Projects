@@ -36,13 +36,14 @@ models = {
     "Random Forest": RandomForestClassifier(n_estimators=30, random_state=42),
     "Decision Tree": DecisionTreeClassifier(random_state=42),
     "Logistic Regression": LogisticRegression(max_iter=500, random_state=42),
-    "SVM": SVC(random_state=42),
+    "SVM": SVC(probability=True, random_state=42),
     "XGBoost": XGBClassifier( n_estimators=30, max_depth=3, eval_metric="logloss", random_state=42)
 }
 
 trained_models = {}
 
 for name, model in models.items():
+    print(name, model)
     model.fit(X_train_scaled, y_train)
     trained_models[name] = model
 

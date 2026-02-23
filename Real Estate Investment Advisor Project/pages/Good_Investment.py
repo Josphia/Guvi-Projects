@@ -4,6 +4,7 @@ import joblib
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 
 st.title("🏡 Real Estate Investment Advisor")
+st.subheader("Is this a Good Investment?")
 
 @st.cache_resource
 def load_assets():
