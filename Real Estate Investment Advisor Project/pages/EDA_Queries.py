@@ -23,7 +23,12 @@ option = st.selectbox("", options = [
     "7. What is the average property price by city?",
     "8. What is the median age of properties by locality?",
     "9. How is BHK distributed across cities?",
-    "10. What are the price trends for the top 5 most expensive localities?"
+    "10. What are the price trends for the top 5 most expensive localities?",
+    "11. How are numeric features correlated with each other?",
+    "12. How do nearby schools relate to price per sq ft?",
+    "13. How do nearby hospitals relate to price per sq ft?",
+    "14. How does price vary by furnished status?",
+    "15. How does price per sq ft vary by property facing direction?"
     ], index=None, placeholder="Select One Josphia")
 
 
@@ -94,4 +99,40 @@ elif option == "9. How is BHK distributed across cities?":
 
 elif option == "10. What are the price trends for the top 5 most expensive localities?":
     st.subheader("Price Trends for the Top 5 most Expensive Localities")
-    df10 = df.groupby('Locality')
+    idx = df.groupby('Locality')['Price_in_Lakhs'].idxmax()
+    df10 = df.loc[idx]
+    df10 = df10.sort_values(by='Price_in_Lakhs', ascending=False)
+    df10=df10[['Locality','Price_in_Lakhs', 'ID', 'Property_Type', 'BHK', 'Size_in_SqFt', 'Year_Built', 'Furnished_Status', 'Availability_Status']]
+    st.dataframe(df10.head(5), hide_index=True)
+
+elif option == "11. How are numeric features correlated with each other?":
+    st.subheader("Correlation between Numeric Features")
+    numeric_df = df.select_dtypes(include='number')
+    corr = numeric_df.corr()
+    plt.figure(figsize=(10, 8))
+    sns.heatmap( corr, annot=True, cmap='rocket', fmt=".2f" )
+    st.pyplot(plt)
+
+elif option == "12. How do nearby schools relate to price per sq ft?":
+    st.subheader("Relationship between Nearby Schools and Price per Sqft")
+    df12 = df.groupby('Nearby_Schools', as_index=False)['Price_per_SqFt'].mean()
+    df12.columns=['No. of Nearby Schools', 'Mean Price per SqFt']
+    st.dataframe(df12, hide_index=True)
+
+elif option == "13. How do nearby hospitals relate to price per sq ft?":
+    st.subheader("Relationship between Nearby hospitals and Price per Sqft")
+    df13 = df.groupby('Nearby_Hospitals', as_index=False)['Price_per_SqFt'].mean()
+    df13.columns=['No. of Nearby Hospitals', 'Mean Price per SqFt']
+    st.dataframe(df13, hide_index=True)
+
+elif option == "14. How does price vary by furnished status?":
+    st.subheader("Relationship between Price and Furnished Status")
+    df14 = df.groupby('Furnished_Status', as_index=False)['Price_in_Lakhs'].mean()
+    df14.columns=['Furnished Status', 'Mean Price (in Lakhs)']
+    st.dataframe(df14, hide_index=True)
+
+elif option == "15. How does price per sq ft vary by property facing direction?":
+    st.subheader("Variation of Price per Sqft by Property Facing Direction")
+    df15 = df.groupby('Facing', as_index=False)['Price_per_SqFt'].mean()
+    df15.columns=['Facing Direction', 'Mean Price per SqFt']
+    st.dataframe(df15, hide_index=True)
