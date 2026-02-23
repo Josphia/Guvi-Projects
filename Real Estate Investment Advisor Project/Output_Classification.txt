@@ -1,0 +1,38 @@
+Is this a Good Investment?
+
+Logistic Regression:
+Yes, GOOD Investment ✅
+Accuracy: 0.9963
+Precision: 0.9959
+Recall: 0.9960
+ROC AUC: 0.9997
+
+Random Forest:
+Yes, GOOD Investment ✅
+Accuracy: 0.9939
+Precision: 0.9952
+Recall: 0.9914
+ROC AUC: 0.9993
+
+XGBoost:
+Yes, GOOD Investment ✅
+Accuracy: 0.9924
+Precision: 0.9928
+Recall: 0.9907
+ROC AUC: 0.9996
+
+Decision Tree:
+Yes, GOOD Investment ✅
+Accuracy: 0.9937
+Precision: 0.9924
+Recall: 0.9939
+ROC AUC: 0.9938
+
+KNN:
+Yes, GOOD Investment ✅
+Accuracy: 0.9521
+Precision: 0.9490
+Recall: 0.9465
+ROC AUC: 0.9913
+
+
