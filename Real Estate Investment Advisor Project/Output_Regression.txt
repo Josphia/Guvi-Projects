@@ -1,0 +1,31 @@
+Predicting the Future Price in 5 Years
+
+Linear Regression:
+Estimated Future Price (5 Years): ₹70.46 Lakhs
+RMSE: 37.9991
+MAE: 27.6424
+R² Score: 0.9626
+
+Decision Tree:
+Estimated Future Price (5 Years): ₹74.37 Lakhs
+RMSE: 11.4693
+MAE: 6.6660
+R² Score: 0.9966
+
+Random Forest:
+Estimated Future Price (5 Years): ₹70.22 Lakhs
+RMSE: 30.0095
+MAE: 19.9794
+R² Score: 0.9767
+
+Linear SVR:
+Estimated Future Price (5 Years): ₹67.79 Lakhs
+RMSE: 39.0310
+MAE: 26.7185
+R² Score: 0.9606
+
+XGBoost:
+Estimated Future Price (5 Years): ₹71.93 Lakhs
+RMSE: 7.9474
+MAE: 5.6169
+R² Score: 0.9984
