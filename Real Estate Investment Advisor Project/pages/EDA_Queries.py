@@ -20,7 +20,10 @@ option = st.selectbox("", options = [
     "4. Is there a relationship between property size and price?",
     "5. Are there any outliers in price per sq ft or property size?",
     "6. What is the average price per sq ft by state?",
-    "7. What is the average property price by city?"
+    "7. What is the average property price by city?",
+    "8. What is the median age of properties by locality?",
+    "9. How is BHK distributed across cities?",
+    "10. What are the price trends for the top 5 most expensive localities?"
     ], index=None, placeholder="Select One Josphia")
 
 
@@ -75,7 +78,20 @@ elif option == "7. What is the average property price by city?":
     st.subheader("Average Price of Properties by Cities")
     df7 = df.groupby('City', as_index=False)['Price_in_Lakhs'].mean()
     df7.columns = ['City', 'Average_Price_(in_Lakhs)']
-    st.dataframe(df7)
+    st.dataframe(df7, hide_index=True)
 
+elif option == "8. What is the median age of properties by locality?":
+    st.subheader("Median Age of properties by Locality")
+    df8 = df.groupby('Locality', as_index=False)['Age_of_Property'].median()
+    df8.columns = ['Locality_Name', 'Median_Age_of_Properties']
+    st.dataframe(df8, hide_index=True)
 
+elif option == "9. How is BHK distributed across cities?":
+    st.subheader("Distribution of BHKs across different Cities")
+    df9 = df.groupby(['City','BHK'], as_index=False).size()
+    df9.columns = ['City', 'BHK_Type', 'Count']
+    st.dataframe(df9, hide_index=True)
 
+elif option == "10. What are the price trends for the top 5 most expensive localities?":
+    st.subheader("Price Trends for the Top 5 most Expensive Localities")
+    df10 = df.groupby('Locality')
