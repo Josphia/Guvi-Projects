@@ -13,7 +13,7 @@ st.set_page_config(
 st.subheader("🔍 Property Query Page")
 df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv")
 
-option = st.selectbox("", options = [
+option = st.selectbox("Select One from Below", options = [
     "1. What is the distribution of property prices?", 
     "2. What is the distribution of property sizes?", 
     "3. How does the price per sq ft vary by property type?", 
@@ -28,8 +28,13 @@ option = st.selectbox("", options = [
     "12. How do nearby schools relate to price per sq ft?",
     "13. How do nearby hospitals relate to price per sq ft?",
     "14. How does price vary by furnished status?",
-    "15. How does price per sq ft vary by property facing direction?"
-    ], index=None, placeholder="Select One Josphia")
+    "15. How does price per sq ft vary by property facing direction?",
+    "16. How many properties belong to each owner type?",
+    "17. How many properties are available under each availability status?",
+    "18. Does parking space affect property price?",
+    "19. How do amenities affect price per sq ft?",
+    "20. How does public transport accessibility relate to price per sq ft?"
+    ], index=None, placeholder="None")
 
 
 if option == "1. What is the distribution of property prices?":
@@ -136,3 +141,34 @@ elif option == "15. How does price per sq ft vary by property facing direction?"
     df15 = df.groupby('Facing', as_index=False)['Price_per_SqFt'].mean()
     df15.columns=['Facing Direction', 'Mean Price per SqFt']
     st.dataframe(df15, hide_index=True)
+
+elif option == "16. How many properties belong to each owner type?":
+    st.subheader("No. of Properties belong to each Owner Type")
+    df16 = df.groupby('Owner_Type', as_index=False).size()
+    df16.columns=['Owner Type', 'No. of Properties']
+    st.dataframe(df16, hide_index=True) 
+
+elif option == "17. How many properties are available under each availability status?":
+    st.subheader("No. of Properties available under each Availability Status")
+    df17 = df.groupby('Availability_Status', as_index=False).size()
+    df17.columns=['Availability Status', 'No. of Properties']
+    st.dataframe(df17, hide_index=True) 
+
+elif option == "18. Does parking space affect property price?":
+    st.subheader("Impact of Parking Space on Property Price")
+    df18 = df.groupby('Parking_Space', as_index=False)['Price_in_Lakhs'].median()
+    df18.columns=['Parking Space', 'Median Price (in_Lakhs)']
+    st.dataframe(df18, hide_index=True)
+
+elif option == "19. How do amenities affect price per sq ft?":
+    st.subheader("Impact of Amenities on Price per Sqft")
+    df['Amenity_Count'] = df['Amenities'].str.count(',') + 1
+    df19 = df.groupby('Amenity_Count', as_index=False)['Price_per_SqFt'].mean()
+    df19.columns=['Amenities Count', 'Price_per_SqFt']
+    st.dataframe(df19, hide_index=True) 
+
+elif option == "20. How does public transport accessibility relate to price per sq ft?":
+    st.subheader("Relation between Public Transport Accessibility and Price per Sqft")
+    df20 = df.groupby('Public_Transport_Accessibility', as_index=False)['Price_per_SqFt'].mean()
+    df20.columns=['Public_Transport_Accessibility', 'Price_per_SqFt']
+    st.dataframe(df20, hide_index=True)
