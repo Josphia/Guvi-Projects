@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
 from xgboost import XGBClassifier
 
 df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv")
@@ -33,17 +33,17 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 
 models = {
-    "Random Forest": RandomForestClassifier(n_estimators=30, random_state=42),
-    "Decision Tree": DecisionTreeClassifier(random_state=42),
     "Logistic Regression": LogisticRegression(max_iter=500, random_state=42),
-    "SVM": SVC(probability=True, random_state=42),
-    "XGBoost": XGBClassifier( n_estimators=30, max_depth=3, eval_metric="logloss", random_state=42)
+    "Random Forest": RandomForestClassifier(n_estimators=30, random_state=42),
+    "XGBoost": XGBClassifier( n_estimators=30, max_depth=3, eval_metric="logloss", random_state=42),
+    "Decision Tree": DecisionTreeClassifier(random_state=42),
+    "KNN": KNeighborsClassifier(n_neighbors=5, weights="distance")
+    
 }
 
 trained_models = {}
 
 for name, model in models.items():
-    print(name, model)
     model.fit(X_train_scaled, y_train)
     trained_models[name] = model
 
