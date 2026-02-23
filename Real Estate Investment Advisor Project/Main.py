@@ -12,6 +12,8 @@ df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advi
 
 #print(df.describe())
 
+#secondaryBackgroundColor="#ffc6c6"
+
 le = LabelEncoder()
 
 df['City_Encoded'] = le.fit_transform(df['City'])

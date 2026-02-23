@@ -59,7 +59,7 @@ elif option == "3. How does the price per sq ft vary by property type?":
     count = df['Property_Type'].value_counts()
     fig, ax = plt.subplots(figsize=(3, 3))
     ax.pie(count, labels=count.index, autopct='%1.1f%%', startangle=90)
-    ax.set_title("Distribution of Price Per Sqft Property Types")
+    ax.set_title("Distribution of Price Per Sqft by Property Types")
     st.pyplot(fig)
 
 elif option == "4. Is there a relationship between property size and price?":
