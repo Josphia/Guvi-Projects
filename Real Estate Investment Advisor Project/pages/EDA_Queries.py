@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🔍 Property Query Page")
+st.subheader("🔍 Property Query Page")
 df = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv")
 
 option = st.selectbox("", options = [
@@ -19,12 +19,13 @@ option = st.selectbox("", options = [
     "3. How does the price per sq ft vary by property type?", 
     "4. Is there a relationship between property size and price?",
     "5. Are there any outliers in price per sq ft or property size?",
-    "6. What is the average price per sq ft by state?"
+    "6. What is the average price per sq ft by state?",
+    "7. What is the average property price by city?"
     ], index=None, placeholder="Select One Josphia")
 
 
 if option == "1. What is the distribution of property prices?":
-    st.title("📊 EDA - Property Price Distribution")
+    st.subheader("📊 EDA - Property Price Distribution")
     fig, ax = plt.subplots(figsize=(8,5))
     sns.histplot( df['Price_in_Lakhs'], bins=25, kde=True, ax=ax, color="#ffc6c6" )
     ax.set_title("Distribution of Property Prices")
@@ -33,7 +34,7 @@ if option == "1. What is the distribution of property prices?":
     st.pyplot(fig)  
 
 elif option == "2. What is the distribution of property sizes?":
-    st.title("📊 EDA - Property Sizes Distribution")
+    st.subheader("📊 EDA - Property Sizes Distribution")
     fig, ax = plt.subplots(figsize=(8,5))
     sns.histplot( df['Size_in_SqFt'], bins=50, kde=True, ax=ax, color="#ffc6c6" )
     ax.set_title("Distribution of Property Sizes")
@@ -68,6 +69,13 @@ elif option == "6. What is the average price per sq ft by state?":
     st.subheader("Average Price per Sqft by State")
     df6 = df.groupby('State')['Price_per_SqFt'].mean()
     st.dataframe(df6)
+
+
+elif option == "7. What is the average property price by city?":
+    st.subheader("Average Price of Properties by Cities")
+    df7 = df.groupby('City', as_index=False)['Price_in_Lakhs'].mean()
+    df7.columns = ['City', 'Average_Price_(in_Lakhs)']
+    st.dataframe(df7)
 
 
 
