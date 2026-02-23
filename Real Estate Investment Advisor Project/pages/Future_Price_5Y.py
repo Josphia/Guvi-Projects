@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-#Future Price Final and Clear
+#Future_Price Final and Clear
 
 st.title("🏡 Real Estate Investment Advisor")
 st.subheader("Predicting the Future Price in 5 Years")
