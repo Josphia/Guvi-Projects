@@ -55,11 +55,13 @@ agent_list = ["All"] + agent_df["Name"].tolist()
 
 with st.sidebar.expander("Search 🔍"):
     selected_city = st.selectbox("📍 By City", city_list)
+    show_data_city = st.button("Show City Results")
     selected_property_type = st.selectbox("🏙️ By Property Type", property_type_list)
+    show_data_property = st.button("Show Property Results")
     selected_agent = st.selectbox("🧔🏻 By Agent", agent_list)
-    show_data = st.button("Show Results")
+    show_data_agent = st.button("Show Agent Results")
 
-if show_data:
+if show_data_city:
     if selected_city == "All":
         query = """
         SELECT *
@@ -81,7 +83,7 @@ if show_data:
         st.subheader(f"Properties in {selected_city}")
         st.dataframe(df)
 
-
+if show_data_property:
     if selected_property_type == "All":
         query = """
             SELECT *
@@ -103,6 +105,7 @@ if show_data:
         st.subheader(f"Properties by {selected_property_type}")
         st.dataframe(df)
 
+if show_data_agent:
     if selected_agent == "All":
         query = """
             SELECT Name AS Agent_Name, Agent_ID, Phone, Email

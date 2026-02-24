@@ -35,7 +35,7 @@ sales.to_sql("sales", conn, if_exists="replace", index=False)
 col1, col2, col3 = st.columns([1,4,1])
 
 with col2:
-    st.title("❁ BrickView Real Estate - Queries ❁")
+    st.subheader("❁ BrickView Real Estate - Queries ❁")
 
 def run_query(query):
     return pd.read_sql(query, conn)
@@ -153,12 +153,21 @@ queries = {
     ON l.listing_id = s.listing_id
     GROUP BY l.city""",
     "15. Which listings took more than 90 days to sell?": """
-    SELECT *
+    SELECT 
+        listings.Listing_ID,
+        listings.City,
+        listings.Property_Type,
+        listings.Price,
+        listings.Sqft,
+        listings.Date_Listed,
+        sales.Sale_Price,
+        sales.Date_Sold,
+        sales.Days_on_Market
     FROM listings 
     JOIN sales
     ON listings.Listing_ID = sales.Listing_ID
-    WHERE sales.Days_On_Market > 90
-    ORDER BY sales.Days_On_Market ASC;""",
+    WHERE sales.Days_on_Market > 90
+    ORDER BY sales.Days_on_Market ASC;""",
     "16. How does metro distance affect time on market?": """
     SELECT 
         CASE
@@ -180,11 +189,23 @@ queries = {
     GROUP BY Month_Year
     ORDER BY Month_Year ASC;""",
     "18. Which properties are currently unsold?": """
-    SELECT *
-    FROM listings l
-    LEFT JOIN sales s
-    ON l.Listing_ID = s.Listing_ID
-    WHERE s.Sale_Price IS NULL""",
+    SELECT 
+        listings.Listing_ID,
+        listings.City,
+        listings.Property_Type,
+        listings.Price,
+        listings.Sqft,
+        listings.Date_Listed,
+        listings.Agent_ID,
+        listings.Latitude,
+        listings.Longitude,
+        sales.Sale_Price,
+        sales.Date_Sold,
+        sales.Days_on_Market
+    FROM listings
+    LEFT JOIN sales
+    ON listings.Listing_ID = sales.Listing_ID
+    WHERE sales.Sale_Price IS NULL""",
     "19. Which agents have closed the most sales?": """
     SELECT a.Name AS Agent_Name, ae.deals_closed AS Deals_Closed
     FROM agents a
@@ -294,7 +315,7 @@ if selected_query != "None":
 
     if selected_query.startswith("9."):
         result9 = (
-            df.groupby('city')['price']
+            df.groupby('City')['Price']
             .median()
             .reset_index()
         )
