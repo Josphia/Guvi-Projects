@@ -35,7 +35,7 @@ sales.to_sql("sales", conn, if_exists="replace", index=False)
 col1, col2, col3 = st.columns([1,4,1])
 
 with col2:
-    st.subheader("❁ BrickView Real Estate - Queries ❁")
+    st.subheader("❁❁ BrickView Real Estate - Queries ❁❁")
 
 def run_query(query):
     return pd.read_sql(query, conn)
