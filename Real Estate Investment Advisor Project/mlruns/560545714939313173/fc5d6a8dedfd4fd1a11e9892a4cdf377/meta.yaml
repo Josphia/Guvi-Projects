@@ -1,0 +1,15 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/560545714939313173/fc5d6a8dedfd4fd1a11e9892a4cdf377/artifacts
+end_time: 1771999805906
+entry_point_name: ''
+experiment_id: '560545714939313173'
+lifecycle_stage: active
+run_id: fc5d6a8dedfd4fd1a11e9892a4cdf377
+run_name: Logistic Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771999794903
+status: 3
+tags: []
+user_id: Hp

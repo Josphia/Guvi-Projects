@@ -1,0 +1,15 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/560545714939313173/5ff162e1cfd941a29b55b42e8e4b2f57/artifacts
+end_time: 1771999816370
+entry_point_name: ''
+experiment_id: '560545714939313173'
+lifecycle_stage: active
+run_id: 5ff162e1cfd941a29b55b42e8e4b2f57
+run_name: Random Forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771999810665
+status: 3
+tags: []
+user_id: Hp

@@ -1,0 +1,15 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/204580317547867668/f2b5e8b4053d4cdba230eaa3dc318a8a/artifacts
+end_time: 1771999173499
+entry_point_name: ''
+experiment_id: '204580317547867668'
+lifecycle_stage: active
+run_id: f2b5e8b4053d4cdba230eaa3dc318a8a
+run_name: Local_Folder_Test
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771999173439
+status: 3
+tags: []
+user_id: Hp

@@ -1,0 +1,15 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/423795941869727850/74b377247eba40a9ba7062a055dd55f8/artifacts
+end_time: 1772000216867
+entry_point_name: ''
+experiment_id: '423795941869727850'
+lifecycle_stage: active
+run_id: 74b377247eba40a9ba7062a055dd55f8
+run_name: Linear SVR
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772000213106
+status: 3
+tags: []
+user_id: Hp

@@ -1,5 +1,8 @@
 import pandas as pd
 import joblib
+import numpy as np
+import mlflow
+import mlflow.sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LinearRegression
@@ -7,12 +10,15 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import LinearSVR
 from xgboost import XGBRegressor
-import mlflow
-import mlflow.sklearn
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import numpy as np
-#Future Price Final and Clear
-df = pd.read_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\india_housing_prices.csv" )
+
+mlflow.set_tracking_uri("mlruns")
+mlflow.set_experiment("Future_Price_Regression")
+
+base_path = r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project"
+data_path = f"{base_path}\india_housing_prices.csv"
+
+df = pd.read_csv(data_path)
 
 city_growth_rates = {
     'Ahmedabad': 1.45, 'Amritsar': 1.25, 'Bangalore': 1.70, 'Bhopal': 1.30,
@@ -29,7 +35,7 @@ city_growth_rates = {
 }
 
 city_growth_rate = df["City"].map(city_growth_rates)
-bhk_rate = df['BHK']*0.01
+bhk_rate = df['BHK'] * 0.01
 sqft_rate = df["Size_in_SqFt"] / 1000 * 0.02
 year_built_rate = (2026 - df['Year_Built']) * 0.005
 
@@ -38,18 +44,16 @@ df["Future_Price_5Y"] = df["Price_in_Lakhs"] * (city_growth_rate + bhk_rate + sq
 le_city = LabelEncoder()
 df["City"] = le_city.fit_transform(df["City"])
 
-features = [ "BHK", "Size_in_SqFt", "Price_in_Lakhs", "Year_Built", "City"]
+features = ["BHK", "Size_in_SqFt", "Price_in_Lakhs", "Year_Built", "City"]
 
 X = df[features]
 y = df["Future_Price_5Y"]
 
-X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42 )
-
-X_test.to_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_r.csv", index=False )
-y_test.to_csv( r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_r.csv", index=False )
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test) # Scaled once outside the loop
 
 models = {
     "Linear Regression": LinearRegression(),
@@ -61,34 +65,31 @@ models = {
 
 trained_models = {}
 
-mlflow.set_experiment("Future_Price_Regression")
-
 for name, model in models.items():
-
     with mlflow.start_run(run_name=name):
-
         model.fit(X_train_scaled, y_train)
-
-        X_test_scaled = scaler.transform(X_test)
         y_pred = model.predict(X_test_scaled)
 
         rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-        mae  = mean_absolute_error(y_test, y_pred)
-        r2   = r2_score(y_test, y_pred)
+        mae = mean_absolute_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
 
         mlflow.log_param("model_name", name)
+        if hasattr(model, 'get_params'):
+            mlflow.log_params(model.get_params())
 
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("mae", mae)
         mlflow.log_metric("r2", r2)
 
-        mlflow.sklearn.log_model(model, "model")
+        mlflow.sklearn.log_model(model, "regression_model")
 
         trained_models[name] = model
+        print(f"Finished training {name}")
 
-joblib.dump(trained_models, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\models_r.pkl", compress=3)
-joblib.dump(scaler, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\scaler_r.pkl")
-joblib.dump(features, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\features_r.pkl")
-joblib.dump(le_city, r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\le_city.pkl")
+joblib.dump(trained_models, f"{base_path}\models_r.pkl", compress=3)
+joblib.dump(scaler, f"{base_path}\scaler_r.pkl")
+joblib.dump(features, f"{base_path}\features_r.pkl")
+joblib.dump(le_city, f"{base_path}\le_city.pkl")
 
-print("Training Completed")
+print("\nRegression Training Completed")

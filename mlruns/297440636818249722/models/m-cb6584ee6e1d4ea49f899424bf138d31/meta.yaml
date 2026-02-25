@@ -1,0 +1,10 @@
+artifact_location: file:E:/VS Code Projects/Guvi-Projects/mlruns/297440636818249722/models/m-cb6584ee6e1d4ea49f899424bf138d31/artifacts
+creation_timestamp: 1772000676196
+experiment_id: '297440636818249722'
+last_updated_timestamp: 1772000680733
+model_id: m-cb6584ee6e1d4ea49f899424bf138d31
+model_type: null
+name: regression_model
+source_run_id: 0ea4d78dea404867bc2037f6d5b3b9e6
+status: 2
+status_message: null

@@ -1,0 +1,14 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/mlruns/297440636818249722/293eb4971ef4428da1f62c7fbd7fb08e/artifacts
+end_time: 1772000675389
+entry_point_name: ''
+experiment_id: '297440636818249722'
+lifecycle_stage: active
+run_id: 293eb4971ef4428da1f62c7fbd7fb08e
+run_name: Linear SVR
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772000670062
+status: 3
+tags: []
+user_id: Hp

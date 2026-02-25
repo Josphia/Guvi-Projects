@@ -1,0 +1,14 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/mlruns/297440636818249722/feaf6a2220824669b6e9bc04ad422d18/artifacts
+end_time: 1772000635760
+entry_point_name: ''
+experiment_id: '297440636818249722'
+lifecycle_stage: active
+run_id: feaf6a2220824669b6e9bc04ad422d18
+run_name: Linear Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772000631853
+status: 3
+tags: []
+user_id: Hp

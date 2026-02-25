@@ -7,26 +7,21 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.naive_bayes import GaussianNB
-
 import mlflow
 import mlflow.sklearn
 
-df = pd.read_csv("india_housing_prices.csv")
+mlflow.set_tracking_uri("mlruns") 
+mlflow.set_experiment("Good_Investment_Classification")
 
+df = pd.read_csv("india_housing_prices.csv")
 df = df.sample(n=50000, random_state=42)
 
 city_median = df.groupby("City")["Price_per_SqFt"].transform("median")
 df["Good_Investment"] = (df["Price_per_SqFt"] < city_median).astype(int)
 
 features = [
-    "BHK",
-    "Size_in_SqFt",
-    "Price_in_Lakhs",
-    "Age_of_Property",
-    "Nearby_Schools",
-    "Nearby_Hospitals",
-    "Property_Type",
-    "Furnished_Status"
+    "BHK", "Size_in_SqFt", "Price_in_Lakhs", "Age_of_Property",
+    "Nearby_Schools", "Nearby_Hospitals", "Property_Type", "Furnished_Status"
 ]
 
 X = df[features].copy()
@@ -54,40 +49,36 @@ models = {
     "Naive Bayes": GaussianNB()
 }
 
-mlflow.set_experiment("Good_Investment_Classification")
-
 trained_models = {}
 
 for name, model in models.items():
-
     with mlflow.start_run(run_name=name):
-
         model.fit(X_train_scaled, y_train)
-
         y_pred = model.predict(X_test_scaled)
 
+        accuracy = accuracy_score(y_test, y_pred)
+        precision = precision_score(y_test, y_pred)
+        recall = recall_score(y_test, y_pred)
+        
         if hasattr(model, "predict_proba"):
             y_proba = model.predict_proba(X_test_scaled)[:, 1]
             roc_auc = roc_auc_score(y_test, y_proba)
         else:
             roc_auc = None
 
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-
-        mlflow.log_param("model_name", name)
+        if hasattr(model, 'get_params'):
+            mlflow.log_params(model.get_params())
 
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_metric("precision", precision)
         mlflow.log_metric("recall", recall)
-
         if roc_auc is not None:
             mlflow.log_metric("roc_auc", roc_auc)
 
-        mlflow.sklearn.log_model(model, "model")
-
+        mlflow.sklearn.log_model(model, "model_artifact")
+        
         trained_models[name] = model
+        print(f"Finished training {name}")
 
 joblib.dump(trained_models, "models_c.pkl")
 joblib.dump(scaler, "scaler_c.pkl")
@@ -95,4 +86,4 @@ joblib.dump(features, "features.pkl")
 joblib.dump(le_property, "le_property.pkl")
 joblib.dump(le_furnished, "le_furnished.pkl")
 
-print("ALL TRAINING COMPLETED SUCCESSFULLY")
+print("\Classification Training Completed")

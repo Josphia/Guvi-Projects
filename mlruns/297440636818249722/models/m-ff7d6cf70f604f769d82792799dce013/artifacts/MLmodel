@@ -1,0 +1,23 @@
+artifact_path: file:E:/VS Code Projects/Guvi-Projects/mlruns/297440636818249722/models/m-ff7d6cf70f604f769d82792799dce013/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-ff7d6cf70f604f769d82792799dce013
+model_size_bytes: 496
+model_uuid: m-ff7d6cf70f604f769d82792799dce013
+prompts: null
+run_id: feaf6a2220824669b6e9bc04ad422d18
+utc_time_created: '2026-02-25 06:23:52.031962'
