@@ -7,11 +7,26 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsClassifier  
+from sklearn.naive_bayes import GaussianNB 
 import mlflow
 import mlflow.sklearn
 
+custom_env = {
+    "name": "mlflow-env",
+    "channels": ["conda-forge"],
+    "dependencies": [
+        "python=3.11",
+        "pip",
+        {
+            "pip": [
+                "mlflow",
+                "scikit-learn",
+                "pandas",
+                "numpy"
+            ]
+        }
+    ]
+}
 
 df = pd.read_csv("india_housing_prices.csv")
 
@@ -67,22 +82,29 @@ for name, model in models.items():
 
     with mlflow.start_run(run_name=name):
 
-        model.fit(X_train_scaled, y_train)
+        if name == "Logistic Regression":
+            model.fit(X_train_scaled, y_train)
+            y_pred = model.predict(X_test_scaled)
 
-        y_pred = model.predict(X_test_scaled)
-
-        if hasattr(model, "predict_proba"):
-            y_proba = model.predict_proba(X_test_scaled)[:, 1]
-            roc_auc = roc_auc_score(y_test, y_proba)
+            if hasattr(model, "predict_proba"):
+                y_proba = model.predict_proba(X_test_scaled)[:, 1]
         else:
-            roc_auc = None
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+
+            if hasattr(model, "predict_proba"):
+                y_proba = model.predict_proba(X_test)[:, 1]
 
         accuracy = accuracy_score(y_test, y_pred)
         precision = precision_score(y_test, y_pred)
         recall = recall_score(y_test, y_pred)
 
-        mlflow.log_param("model_name", name)
+        if "y_proba" in locals():
+            roc_auc = roc_auc_score(y_test, y_proba)
+        else:
+            roc_auc = None
 
+        mlflow.log_param("model_name", name)
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_metric("precision", precision)
         mlflow.log_metric("recall", recall)
@@ -90,9 +112,14 @@ for name, model in models.items():
         if roc_auc is not None:
             mlflow.log_metric("roc_auc", roc_auc)
 
-        mlflow.sklearn.log_model(model, "model")
+        mlflow.sklearn.log_model(
+            model,
+            name="model",
+            conda_env=custom_env
+        )
 
         trained_models[name] = model
+
 
 joblib.dump(trained_models, "models_c.pkl")
 joblib.dump(scaler, "scaler_c.pkl")
