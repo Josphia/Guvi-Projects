@@ -1,0 +1,24 @@
+artifact_path: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/1/models/m-3b1828d727da444ab67df7d6ea385af7/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-3b1828d727da444ab67df7d6ea385af7
+model_size_bytes: 17311674
+model_uuid: m-3b1828d727da444ab67df7d6ea385af7
+prompts: null
+run_id: 10e37531efaa4d8eb58499b185c2d35f
+utc_time_created: '2026-02-24 21:18:07.814790'
