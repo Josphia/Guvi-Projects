@@ -1,9 +1,10 @@
 artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
   Project/mlruns/423795941869727850/923702ab3d92495f844efcdad95791e5/artifacts
+deleted_time: 1772002993938
 end_time: 1772000193220
 entry_point_name: ''
 experiment_id: '423795941869727850'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 923702ab3d92495f844efcdad95791e5
 run_name: Decision Tree
 source_name: ''

@@ -1,9 +1,10 @@
 artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
   Project/mlruns/423795941869727850/5d191e6fea894a0b9f9366a5e8ae5722/artifacts
+deleted_time: 1772002993918
 end_time: 1772000189058
 entry_point_name: ''
 experiment_id: '423795941869727850'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 5d191e6fea894a0b9f9366a5e8ae5722
 run_name: Linear Regression
 source_name: ''

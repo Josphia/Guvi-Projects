@@ -1,9 +1,10 @@
 artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
   Project/mlruns/423795941869727850/74b377247eba40a9ba7062a055dd55f8/artifacts
+deleted_time: 1772002993929
 end_time: 1772000216867
 entry_point_name: ''
 experiment_id: '423795941869727850'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 74b377247eba40a9ba7062a055dd55f8
 run_name: Linear SVR
 source_name: ''

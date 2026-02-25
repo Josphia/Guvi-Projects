@@ -1,9 +1,10 @@
 artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
   Project/mlruns/423795941869727850/1e3dfd8406eb4331b213ee60897bf18d/artifacts
+deleted_time: 1772002927877
 end_time: null
 entry_point_name: ''
 experiment_id: '423795941869727850'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 1e3dfd8406eb4331b213ee60897bf18d
 run_name: Random Forest
 source_name: ''
