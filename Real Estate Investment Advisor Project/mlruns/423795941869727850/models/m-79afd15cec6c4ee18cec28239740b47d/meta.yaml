@@ -1,0 +1,11 @@
+artifact_location: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/423795941869727850/models/m-79afd15cec6c4ee18cec28239740b47d/artifacts
+creation_timestamp: 1772002707330
+experiment_id: '423795941869727850'
+last_updated_timestamp: 1772002710413
+model_id: m-79afd15cec6c4ee18cec28239740b47d
+model_type: null
+name: regression_model
+source_run_id: 75c2e2a6babd4ad9a80b7a69d39bfdea
+status: 2
+status_message: null

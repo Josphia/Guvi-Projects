@@ -1,0 +1,16 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/423795941869727850/e568a5be8a12455aa51e1108f05e8979/artifacts
+deleted_time: 1772001959089
+end_time: 1772001821873
+entry_point_name: ''
+experiment_id: '423795941869727850'
+lifecycle_stage: deleted
+run_id: e568a5be8a12455aa51e1108f05e8979
+run_name: Decision Tree
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772001817444
+status: 3
+tags: []
+user_id: Hp

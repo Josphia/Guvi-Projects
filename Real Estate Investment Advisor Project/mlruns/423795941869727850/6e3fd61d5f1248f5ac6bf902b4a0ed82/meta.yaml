@@ -1,0 +1,16 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/423795941869727850/6e3fd61d5f1248f5ac6bf902b4a0ed82/artifacts
+deleted_time: 1772001959092
+end_time: 1772001877116
+entry_point_name: ''
+experiment_id: '423795941869727850'
+lifecycle_stage: deleted
+run_id: 6e3fd61d5f1248f5ac6bf902b4a0ed82
+run_name: XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772001872054
+status: 3
+tags: []
+user_id: Hp

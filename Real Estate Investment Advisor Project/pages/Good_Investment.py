@@ -29,17 +29,7 @@ hospitals = st.number_input("Nearby Hospitals", 0, 20, 1)
 property_type = st.selectbox("Property Type", le_property.classes_)
 furnished_status = st.selectbox("Furnished Status", le_furnished.classes_)
 
-X_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\X_test_c.csv")
-y_test = pd.read_csv(r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project\y_test_c.csv")
-X_test_scaled = scaler.transform(X_test)
-
-y_pred = model.predict(X_test_scaled)
-y_proba = model.predict_proba(X_test_scaled)[:, 1]
-
-accuracy  = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred)
-recall    = recall_score(y_test, y_pred)
-roc_auc   = roc_auc_score(y_test, y_proba)
+st.write("\n")
 
 if st.button("Predict and Evaluate Model Metrics"):
 
@@ -51,12 +41,9 @@ if st.button("Predict and Evaluate Model Metrics"):
     user_scaled = scaler.transform(user_df)
     prediction = model.predict(user_scaled)[0]
 
+    st.write("\n")
+
     if prediction == 1:
         st.success("Yes, GOOD Investment ✅")
     else:
-        st.error("No, NOT a Good Investment ❌")
-
-    st.write(f"Accuracy: {accuracy:.4f}")
-    st.write(f"Precision: {precision:.4f}")
-    st.write(f"Recall: {recall:.4f}")
-    st.write(f"ROC AUC: {roc_auc:.4f}")
+        st.error("No, NOT a GOOD Investment ❌")

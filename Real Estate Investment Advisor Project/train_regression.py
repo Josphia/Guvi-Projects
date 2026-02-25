@@ -16,7 +16,7 @@ mlflow.set_tracking_uri("mlruns")
 mlflow.set_experiment("Future_Price_Regression")
 
 base_path = r"E:\VS Code Projects\Guvi-Projects\Real Estate Investment Advisor Project"
-data_path = f"{base_path}\india_housing_prices.csv"
+data_path = f"{base_path}/india_housing_prices.csv"
 
 df = pd.read_csv(data_path)
 
@@ -87,9 +87,9 @@ for name, model in models.items():
         trained_models[name] = model
         print(f"Finished training {name}")
 
-joblib.dump(trained_models, f"{base_path}\models_r.pkl", compress=3)
-joblib.dump(scaler, f"{base_path}\scaler_r.pkl")
-joblib.dump(features, f"{base_path}\features_r.pkl")
-joblib.dump(le_city, f"{base_path}\le_city.pkl")
+joblib.dump(trained_models, f"{base_path}/models_r.pkl", compress=3)
+joblib.dump(scaler, f"{base_path}/scaler_r.pkl")
+joblib.dump(features, f"{base_path}/features_r.pkl")
+joblib.dump(le_city, f"{base_path}/le_city.pkl")
 
 print("\nRegression Training Completed")

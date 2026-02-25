@@ -1,0 +1,15 @@
+artifact_uri: file:E:/VS Code Projects/Guvi-Projects/Real Estate Investment Advisor
+  Project/mlruns/423795941869727850/1d9d43d041444a84a92ad3f120a3896f/artifacts
+end_time: 1772002643565
+entry_point_name: ''
+experiment_id: '423795941869727850'
+lifecycle_stage: active
+run_id: 1d9d43d041444a84a92ad3f120a3896f
+run_name: Linear Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772002639525
+status: 3
+tags: []
+user_id: Hp
